@@ -27,9 +27,34 @@ class HashTable {
 
     if (!this.data[address]) {
       this.data[address] = [];
-    } else {
-      this.data[address].push([key, value]); //genera la colision
-      return this.data;
+    }
+    this.data[address].push([key, value]); //genera la colision
+    return this.data;
+  }
+  get(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          return currentBucket[i][1];
+        }
+      }
+    }
+    return undefined;
+  }
+  delete(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          let deletedItem = currentBucket[i];
+          delete currentBucket[i];
+          currentBucket.splice(i, 1);
+          return deletedItem;
+        }
+      }
     }
   }
 }
