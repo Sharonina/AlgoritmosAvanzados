@@ -57,6 +57,17 @@ class HashTable {
       }
     }
   }
+  getAllKeys() {
+    const allKeys = [];
+    for (let bucket of this.data) {
+      if (bucket) {
+        for (let item of bucket) {
+          allKeys.push(item[0]);
+        }
+      }
+    }
+    return allKeys;
+  }
 }
 
 const myHashTable = new HashTable(50);
