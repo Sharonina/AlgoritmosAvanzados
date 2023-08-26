@@ -55,7 +55,17 @@ class BinarysearchTree {
       }
     }
   }
-  //search(value) > el nodo completo
+  search(value) {
+    let current = this.root;
+    while (current && current.value != value) {
+      if (value < current.value) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return current;
+  }
 }
 
 const tree = new BinarysearchTree();
